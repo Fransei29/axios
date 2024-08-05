@@ -1,6 +1,7 @@
-const express = require('express')
-const axios = require('axios')
-const cors = require("cors")
+const express = require('express');
+const axios = require('axios');
+const cors = require("cors");
+const path = require('path');
 
 const app = express()
 
@@ -16,6 +17,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+// Servir archivos estáticos desde el directorio "client"
+app.use(express.static(path.join(__dirname, 'client')));
   
 // Ruta que utiliza CORS con opciones específicas
 app.get("/products/:id", cors(corsOptions), (req, res, next) => {
